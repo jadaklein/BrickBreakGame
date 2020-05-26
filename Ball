@@ -1,0 +1,76 @@
+package BreakoutGame;
+
+import javax.swing.ImageIcon;
+
+//class for Ball movement and functionality
+public class Ball extends Sprite {
+
+    //instance variables for the x and y directions of the ball
+    private int xdir;
+    private int ydir;
+
+    //ball methods
+    public Ball() {
+
+        initBall();
+    }
+
+    private void initBall() {
+
+        xdir = 1;
+        ydir = -1;
+
+        loadImage();
+        getImageDimensions();
+        resetState();
+    }
+
+    private void loadImage() {
+
+        var ballImage = new ImageIcon("src/resources/ball.png");
+        spriteImage = ballImage.getImage();
+    }
+
+    void move() {
+
+        x += xdir;
+        y += ydir;
+
+        if (x == 0) {
+
+            setXDir(1);
+        }
+
+        if (x == Constants.WIDTH - imageWidth) {
+
+            System.out.println(imageWidth);
+            setXDir(-1);
+        }
+
+        if (y == 0) {
+
+            setYDir(1);
+        }
+    }
+
+    private void resetState() {
+
+        x = Constants.INIT_BALL_X;
+        y = Constants.INIT_BALL_Y;
+    }
+
+    void setXDir(int x) {
+
+        xdir = x;
+    }
+
+    void setYDir(int y) {
+
+        ydir = y;
+    }
+
+    int getYDir() {
+
+        return ydir;
+    }
+}
